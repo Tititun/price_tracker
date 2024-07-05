@@ -1,4 +1,5 @@
 .vscode
 __pycache__
+chromedriver
 db.sqlite3
 venv
