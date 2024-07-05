@@ -4,5 +4,5 @@ from . import views
 app_name = 'tracker'
 
 urlpatterns = [
-    # path('', )
+    path('', views.main_page, name='main')
 ]
