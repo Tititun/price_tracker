@@ -5,7 +5,7 @@ from django.db import models
 
 
 class Item(models.Model):
-    name = models.CharField(max_length=512, null=False)
+    name = models.CharField(max_length=512)
     url = models.URLField(max_length=1024, null=False)
     users = models.ManyToManyField(User)
 
