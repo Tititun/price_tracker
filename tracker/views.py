@@ -13,11 +13,15 @@ def main_page(request: HttpRequest):
     if request.method == 'POST':
         url = request.POST.get('url')
         form = ItemForm(request.POST)
-        
-        if not request.session.get('items'):
-            request.session['items'] = []
-        request.session['items'].append(url)
-        return redirect('/items')
+        if form.is_valid():
+            if not request.session.get('items'):
+                request.session['items'] = []
+            if url not in request.session['items']:
+                request.session['items'].append(url)
+            return redirect('/items')
+        else:
+            return render(request, 'tracker/main.html',
+                          {'form': form, 'errors': form.errors})
     form = ItemForm(auto_id=False)
     return render(request, 'tracker/main.html', {'form': form})
 

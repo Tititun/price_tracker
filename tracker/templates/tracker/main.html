@@ -1,10 +1,17 @@
 {% extends "tracker/base.html" %}
 
 {% block content %}
-<div class="container-fluid min-vh-100 align-content-center">
+<div class="container-fluid min-vh-100 align-content-center justify-content-center">
   <div class="row d-flex">
-    <form method="post" action="{% url "tracker:main" %}">
+    <form method="post" action="{% url "tracker:main" %}" class="w-50 mx-auto">
       {% csrf_token %}
+      {% if form.url.errors %}
+      <div class="errorlist d-flex justify-content-center bg-danger-subtle">
+        {% for error in form.url.errors  %}
+          <p class="mb-0">{{ error }}</p>
+        {% endfor %}
+      </div>
+      {% endif %}
       <div class="d-flex justify-content-center">
         {{ form.url }}
         <button type="submit" class="btn btn-primary ms-1">Добавить</button>
