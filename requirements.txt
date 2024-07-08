@@ -1,6 +1,8 @@
 beautifulsoup4
+celery
 django
 pandas
+pika
 pyvirtualdisplay
 requests
 undetected-chromedriver
