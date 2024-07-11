@@ -11,13 +11,14 @@ from .models import Item
 
 def main_page(request: HttpRequest):
     if request.method == 'POST':
-        url = request.POST.get('url')
         form = ItemForm(request.POST)
         if form.is_valid():
+            url = form.cleaned_data['url']
             if not request.session.get('items'):
                 request.session['items'] = []
             if url not in request.session['items']:
                 request.session['items'].append(url)
+            
             return redirect('/items')
         else:
             return render(request, 'tracker/main.html',
